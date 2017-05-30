@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <style>
+  .notification {
+    position: fixed;
+    z-index: 1000;
+    padding: 5px;
+    border: 1px solid black;
+    font: normal 20px Georgia;
+    background: white;
+    text-align: center;
+  }
+
+  .welcome {
+    background: red;
+    color: yellow;
+  }
+  </style>
+
+  <div >
+    <h1>Уведомление</h1>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+  </div>
+<div class = "notification">
+
+</div>
+  <script>
+  /**
+   * Показывает уведомление, пропадающее через 1.5 сек
+   *
+   * @param options.top {number} вертикальный отступ, в px
+   * @param options.right {number} правый отступ, в px
+   * @param options.cssText {string} строка стиля
+   * @param options.className {string} CSS-класс
+   * @param options.html {string} HTML-текст для показа
+   */
+  function showNotification(options) {
+    var i=1;
+    setInterval(function() {
+      var div = document.createElement("div");
+      div.className="notification";
+      if (options.top) {div.style.top = options.top+"px";}
+      if (options.right) {div.style.right = options.right+"px";}
+      if (options.cssText) {div.style.cssText = options.cssText;}
+      if (options.className) {div.classList.add(options.className);}
+      if (options.html) {div.innerHTML = options.html+" "+i;}
+      i++;
+      document.body.appendChild(div);
+      setTimeout(function() {div.remove()} ,1500);
+    },2000);
+
+  }
+  showNotification({
+  top: 10,
+  right: 10,
+  html: "Привет",
+  className: "welcome"
+});
+
+  </script>
+
+</body>
+
+</html>

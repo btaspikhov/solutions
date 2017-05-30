@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>static methods</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function Article() {
+    	
+		  this.created = new Date();
+		  Article.count++;
+		  Article.date = this.created;
+
+		  
+		}
+		Article.count = 0;
+		Article.formatDate = function(date) {
+			return date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
+		}
+		Article.showStats = function() {
+				return 'Всего: ' + this.count + ', Последняя: ' + Article.formatDate(this.date);
+
+		}
+
+		new Article();
+		new Article();
+
+		console.log(Article.showStats()); // Всего: 2, Последняя: (дата)
+
+		new Article();
+
+		console.log(Article.showStats()); // Всего: 3, Последняя: (дата)
+
+	
+
+  </script>
+	
+</body>
+</html>

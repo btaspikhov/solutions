@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>delay</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function f(x) {
+      alert( x );
+    }
+
+    function delay(f, ms) {
+
+        return function() {
+            let args = arguments;
+            let that = this;
+            setTimeout(function() {
+                f.apply(that, args);
+            }, ms);
+        }
+    }
+
+    let f1000 = delay(f, 1000);
+    let f1500 = delay(f, 1500);
+
+    f1000("тест"); // выведет "тест" через 1000 миллисекунд
+    f1500("тест2"); // выведет "тест2" через 1500 миллисекунд
+
+  
+
+
+
+
+  </script>
+	
+</body>
+</html>

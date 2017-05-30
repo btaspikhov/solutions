@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+	.slider {
+	  border-radius: 5px;
+	  background: #E0E0E0;
+	  background: -moz-linear-gradient(left top, #E0E0E0, #EEEEEE) repeat scroll 0 0 transparent;
+	  background: -webkit-gradient(linear, left top, right bottom, from(#E0E0E0), to(#EEEEEE));
+	  background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+	  width: 310px;
+	  height: 15px;
+	  margin: 5px;
+	  /*border: 1px solid red;*/
+	}
+
+	.thumb {
+	  width: 10px;
+	  height: 25px;
+	  border-radius: 3px;
+	  position: relative;
+	  left: 10px;
+	  top: -5px;
+	  background: blue;
+	  cursor: pointer;
+	}
+  </style>  
+</head>
+
+<body>
+
+  <div id="slider" class="slider">
+    <div class="thumb"></div>
+  </div>
+
+  <script>
+
+  	/**
+ * Прикрепляет поведение к заданному слайдеру 
+ * @author: Berik Taspikhov
+ */
+class Slider {
+  
+	constructor(options) {
+
+		  this.slider = options.el;
+  	  this.thumb = this.slider.querySelector('.thumb');
+  		
+  		this.slider.style.position = 'relative';
+  		this.thumb.style.position = 'absolute';
+  		this.thumb.style.zIndex = 1000; // над другими элементами
+  		
+  		let getCoords = this.getCoords.bind(this);
+  		let moveAt = this.moveAt.bind(this);
+  		let thumbOnmousedown = this.thumbOnmousedown.bind(this);
+  		
+  		this.thumb.ondragstart = function() {
+  		  return false;
+  		};
+
+  		this.thumb.onmousedown = thumbOnmousedown;
+	}
+
+	thumbOnmousedown(e) {
+		let coords = this.getCoords(this.thumb);
+  			let shiftX = e.pageX - coords.left;
+
+  			document.onmousemove = (function(e) {
+  				this.moveAt(e, shiftX);
+  			}).bind(this);
+
+  			document.onmouseup = (function() {
+  				document.onmousemove = null;
+					this.thumb.onmouseup = null;
+  			}).bind(this);
+	}
+
+  getCoords (elem) { 
+  	
+  	  let box = elem.getBoundingClientRect();
+
+  	  return {
+  	    top: box.top + pageYOffset,
+  	    left: box.left + pageXOffset,
+  	    right: box.right + pageXOffset
+  	  };
+
+  }
+  
+  moveAt(e, shiftX) {
+  	let sliderCoords = this.getCoords(this.slider);
+    
+  	if (e.pageX - shiftX <= sliderCoords.left) {
+  	   	this.thumb.style.left = 0;
+  	  	return;
+  	}
+  	
+  	if (e.pageX - shiftX + this.thumb.offsetWidth >= sliderCoords.right) {
+  	   	this.thumb.style.left = this.slider.offsetWidth - this.thumb.offsetWidth + 'px' ;
+  	   	return;
+  	}
+  	    this.thumb.style.left = e.pageX - sliderCoords.left - shiftX + 'px'; 
+  }
+
+  
+}
+  
+let slider = new Slider({el: document.querySelector('.slider')});
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fridge</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function Machine(power) {
+      this._power = power;
+      this._enabled = false;
+
+      let self = this;
+
+      this.enable = function() {
+        self._enabled = true;
+      };
+
+      this.disable = function() {
+        self._enabled = false;
+      };
+    }
+
+    function Fridge(power) {
+      
+      Machine.apply(this, arguments);
+
+      let food = []; 
+
+      this.addFood = function() {
+
+        if (!this._enabled) throw new Error('Холодильник выключен');
+        if (arguments.length + food.length > Math.floor(power/100)) throw new Error('Превышена мощность');
+        food = food.concat([].slice.call(arguments));
+        console.log(food.slice());
+      }
+
+      this.getFood = function() {
+        return food.slice();
+      }
+
+      this.filterFood = function(func) {
+        let arr = [];
+        for (let i = 0; i < food.length; i++) {
+          if (func(food[i])) arr.push(food[i]);
+        }
+        return arr;
+       
+      }
+
+      this.removeFood = function(item) {
+        let i = food.indexOf(item);
+        if (i !== -1) food.splice(i, 1);
+      }
+
+      let parentDisable = this.disable;
+      this.disable = function() {
+        if (food.length > 0) throw new Error('Нельзя выключать');
+        parentDisable();
+
+      }
+
+    }
+
+    var fridge = new Fridge(500);
+    fridge.enable();
+    fridge.addFood({
+      title: "котлета",
+      calories: 100
+    });
+    fridge.addFood({
+      title: "сок",
+      calories: 30
+    });
+    fridge.addFood({
+      title: "зелень",
+      calories: 10
+    });
+    fridge.addFood({
+      title: "варенье",
+      calories: 150
+    });
+
+    fridge.removeFood("нет такой еды"); // без эффекта
+    alert( fridge.getFood().length ); // 4
+
+    var dietItems = fridge.filterFood(function(item) {
+      return item.calories < 50;
+    });
+
+    dietItems.forEach(function(item) {
+      alert( item.title ); // сок, зелень
+      fridge.removeFood(item);
+    });
+
+    alert( fridge.getFood().length ); // 2
+
+    var fridge = new Fridge(500);
+    fridge.enable();
+    fridge.addFood("кус-кус");
+    fridge.disable(); // ошибка, в холодильнике есть еда
+
+    
+
+
+  </script>
+	
+</body>
+</html>

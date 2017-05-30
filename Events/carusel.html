@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+      .arrow {
+      padding: 0;
+      background: #ddd;
+      border-radius: 15px;
+      border: 1px solid gray;
+      font-size: 24px;
+      line-height: 24px;
+      color: #444;
+      height: 25px;
+      vertical-align: middle;
+      display: block;
+      position: absolute;
+      }
+
+      .arrow:focus {
+      outline: none;
+      }
+
+      .arrow:hover {
+      background: #ccc;
+      cursor: pointer;
+      }
+
+      ul {
+      height: 130px;
+      padding: 10px;
+      list-style: none;
+      /* убрать между inline-block li лишние пробелы, которые есть в HTML */
+      /* http://davidwalsh.name/remove-whitespace-inline-block */
+
+      font-size: 0;
+      overflow: hidden;
+      width: 9999px;
+      transition: margin-left 1s;
+      }
+
+      ul img {
+      width: 130px;
+      height: 130px;
+      /* по умолчанию inline, но в ряде браузеров это даст лишнее пространство вокруг элементов */
+
+      display: block;
+      }
+
+      ul li {
+      /* если в HTML между элементами <li>..</li> есть пробелы, то они будут видны на странице,
+      чтобы их избежать, нужно либо писать <li>..</li><li>..</li> вплотную, либо не ставить закрывающие </li> */
+
+      display: inline-block;
+      }
+      .carousel {
+        position: relative;
+        width: 420px;
+
+      }
+      .icons {
+        width: 390px;
+        overflow: hidden;
+      }
+      .arrow.right {
+        top: 50px;
+        right: 0px;
+      }
+      .arrow.left {
+        top: 50px;
+        left: 0px;
+      }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ваша верстка виджета, ваши стили -->
+
+    <div class = 'carousel'>
+      <button class="arrow left">⇦</button>
+      <div class = 'icons'>
+        <ul>
+          <li><img src="https://js.cx/carousel/1.png"></li>
+          <li><img src="https://js.cx/carousel/2.png"></li>
+          <li><img src="https://js.cx/carousel/3.png"></li>
+          <li><img src="https://js.cx/carousel/4.png"></li>
+          <li><img src="https://js.cx/carousel/5.png"></li>
+          <li><img src="https://js.cx/carousel/6.png"></li>
+          <li><img src="https://js.cx/carousel/7.png"></li>
+          <li><img src="https://js.cx/carousel/8.png"></li>
+          <li><img src="https://js.cx/carousel/9.png"></li>
+          <li><img src="https://js.cx/carousel/10.png"></li>
+        </ul>
+      </div>
+      <button class="arrow right">⇨</button>
+    </div>
+
+
+
+  <script>
+    // этот код помечает картинки цифрами, для удобства разработки
+    // его можно убрать, если не нужен
+    /*var lis = document.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].style.position = 'relative';
+      var span = document.createElement('span');
+      span.style.cssText = 'position:absolute;left:0;top:0';
+      span.innerHTML = i + 1;
+      lis[i].appendChild(span);
+    }*/
+  </script>
+
+  <script>
+    // ваш код..
+    var ul = document.querySelector('ul');
+    var buttonRight = document.querySelector('.arrow.right');
+    var buttonLeft = document.querySelector('.arrow.left');
+    var lis = document.getElementsByTagName('li');
+    var position = 0;
+      buttonRight.onclick = function() {
+        position = Math.max(position-390, -130*(lis.length-3));
+        ul.style.marginLeft=position+'px';
+        console.log(ul.marginLeft);
+      }
+      buttonLeft.onclick = function() {
+        position = Math.min(position+390, 0);
+        ul.style.marginLeft=position+'px';
+        console.log(ul.marginLeft);
+      }
+
+  </script>
+</body>
+
+</html>

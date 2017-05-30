@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    let vasya = { name: "Вася", age: 23 };
+		let masha = { name: "Маша", age: 18 };
+		let vovochka = { name: "Вовочка", age: 6 };
+
+		let people = [ vasya , masha , vovochka ];
+
+		function sortPeople(o1, o2) {
+			return o1.age - o2.age;
+		}
+
+		people.sort(sortPeople);
+
+		console.log(people);
+      
+    
+
+  </script>
+		}
+</body>
+
+</html>

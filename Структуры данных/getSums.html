@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    let arr = [1,2,3,4,5];
+    function getSums (arr) {
+    	let sums = [];
+    	arr.reduce(function(sum, item) {
+    	sums.push(sum+item);
+    	return sum+item;
+    	}, 0);
+
+    	return sums;
+    }
+    
+    console.log(getSums(arr));
+
+				
+	</script>
+		
+</body>
+
+</html>

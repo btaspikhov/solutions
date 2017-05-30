@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>static methods</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function Ads() {
+    	
+		  this.length = 0;		  
+		}
+
+		Ads.prototype.getLength = function() {
+			for (let key in this) {
+				if (this.hasOwnProperty(key)) length++;
+			}
+			return length;
+		}
+
+		Ads.prototype.setLength = function(l) {
+			this.length = l;
+		}
+
+		let a = new Ads();
+
+
+		console.log(a.getLength()); 
+
+  </script>
+	
+</body>
+</html>

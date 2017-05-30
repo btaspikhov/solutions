@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+      div {
+        border: 1px red solid;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+      }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ваша верстка виджета, ваши стили -->
+
+    <div>
+      <p>czxczxczxczxczxcz
+      zxczxczxcxc</p>
+    </div>
+
+
+
+  <script>
+    var elem = document.querySelector('div');
+    var scale = 1;
+
+    if (elem.addEventListener) {
+      if ('onwheel' in document) {
+        // IE9+, FF17+, Ch31+
+        elem.addEventListener("wheel", onWheel);
+      } else if ('onmousewheel' in document) {
+        // устаревший вариант события
+        elem.addEventListener("mousewheel", onWheel);
+      } else {
+        // Firefox < 17
+        elem.addEventListener("MozMousePixelScroll", onWheel);
+      }
+      } else { // IE8-
+      elem.attachEvent("onmousewheel", onWheel);
+      }
+
+    function onWheel(e) {
+      e = e || window.event;
+
+      // wheelDelta не дает возможность узнать количество пикселей
+      var delta = e.deltaY || e.detail || e.wheelDelta;
+      if (delta>0) scale += 0.05;
+      else scale -= 0.05;
+      
+      elem.style.transform = elem.style.WebkitTransform = elem.style.MsTransform = 'scale(' + scale
+      +')';
+
+      e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    }
+
+   elem.style.transform = elem.style.WebkitTransform = elem.style.MsTransform = 'scale(1.5)';
+  </script>
+
+
+</body>
+
+</html>

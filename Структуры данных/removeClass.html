@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    function removeClass(obj, cls) {
+      let classes = obj.className ? obj.className.split(' ') : [];
+
+      let index = classes.indexOf(cls);
+      while (index !== -1) {
+        classes.splice(index, 1);
+        index = classes.indexOf(cls, index);
+      }
+      
+      
+      obj.className = classes.join(' ');
+
+    }
+
+  </script>
+</body>
+
+</html>

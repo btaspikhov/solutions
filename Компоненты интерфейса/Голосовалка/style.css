@@ -1,0 +1,12 @@
+.voter {
+      font-family: Consolas, "Lucida Console", monospace;
+      font-size: 18px;
+      user-select: none;
+    }
+
+.voter__up,
+.voter__down {
+      cursor: pointer;
+      color: blue;
+      font-weight: bold;
+}

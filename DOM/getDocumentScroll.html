@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+</head>
+
+<body>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
+    esse sequi officia sapiente.</p>
+
+
+  <blockquote>
+    - Что на завтрак, Бэрримор? - Овсянка, сэр. - А на обед? - Овсянка, сэр. - Ну а на ужин? - Котлеты, сэр. - Уррра!!! - Из овсянки, сэр!!!
+  </blockquote>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
+    esse sequi officia sapiente.</p>
+
+
+    <script>
+        function getDocumentScroll() {
+            var div = document.createElement('div');
+            div.style.position = 'fixed';
+            div.style.bottom = '0px';
+            document.body.appendChild(div);
+            var coords = div.getBoundingClientRect();
+            console.log(coords.bottom);
+            var scrollHeight = Math.max(
+                  document.body.scrollHeight, document.documentElement.scrollHeight,
+                  document.body.offsetHeight, document.documentElement.offsetHeight,
+                  document.body.clientHeight, document.documentElement.clientHeight
+            );
+
+            var o = {};
+            o.top = pageYOffset;
+            /*o.bottom = pageYOffset+coords.bottom;
+            o.height = o.bottom - o.top;*/
+            o.bottom = pageYOffset+document.documentElement.clientHeight;
+            o.height = scrollHeight;
+            return o;
+        }
+        console.log(getDocumentScroll());
+
+
+    </script>
+
+
+</body>
+
+</html>

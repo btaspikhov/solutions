@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>formatDate</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function formatDate(d) {
+
+    	if (typeof d === 'string') {
+    		let arr = d.split('-');
+    		arr[0] = arr[0].slice(2);
+    		return arr.reverse().join('.');
+    	}
+
+    	if (typeof d === 'number') {
+    		let date = new Date(d);
+    		let dd = date.getDate();
+    		if (dd<10) dd = '0' + dd;
+    		let mm = date.getMonth()+1;
+    		if (mm<10) mm = '0' + mm;
+    		let yy = date.getFullYear();
+    		if (yy >= 2000) yy = yy % 100;
+    		if (yy < 10) yy = '0' + yy;
+    		return  dd + '.' + mm + '.' + yy;
+    		
+    	}
+
+    	if (Array.isArray(d)) {
+    		d[0] = (''+d[0]).slice(2);
+    		d[1] += 1;
+    		if (d[1] < 10) d[1] = '0' + d[1]; 
+    		if (d[2] < 10) d[2] = '0' + d[2];
+
+    		return  d[2] + '.' + d[1] + '.' + d[0];
+
+    	}
+
+    	if ({}.toString.call(d).slice(8, -1) === 'Date') {
+    		let dd = d.getDate();
+    		if (dd<10) dd = '0' + dd;
+    		let mm = d.getMonth()+1;
+    		if (mm<10) mm = '0' + mm;
+    		let yy = d.getFullYear();
+    		if (yy >= 2000) yy = yy % 100;
+    		if (yy < 10) yy = '0' + yy;
+    		return  dd + '.' + mm + '.' + yy;
+    	}
+
+    }
+
+    formatDate(1234567890000);
+
+  
+
+
+
+
+  </script>
+	
+</body>
+</html>

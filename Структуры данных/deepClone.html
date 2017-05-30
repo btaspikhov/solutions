@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    let obj  = {
+    	a: 1,
+    	b: 2,
+    	c: {
+    		d: 3,
+    		e: 4
+    	}
+    }
+
+    
+		function deepClone(obj) {
+			let clone = {};
+			for (let key in obj) {
+				if (typeof obj[key] === 'object' && obj[key] !== null) {
+					clone[key] = deepClone(obj[key]);
+				}
+				clone[key] = obj[key];
+			}
+
+			return clone;
+			
+		}
+    
+    console.log(deepClone(obj));
+    console.log(obj);  
+  	console.log(deepClone(obj) === obj);
+		
+
+  </script>
+		
+</body>
+
+</html>

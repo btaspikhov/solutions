@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    /**
+     * Проверяет, является ли аргумент объектом или функцией
+     * @param obj - проверяемый аргумент
+     * @returns {boolean}
+     * 
+    */
+    function isObject(obj) {
+    	if ((typeof obj === 'object' && obj !== null) || typeof obj === 'function') return true;
+
+    	return false;
+    }
+
+    /**
+     * @author Berik Taspikhov
+     * Creates a copy of the given object
+     * @param  obj - an object to copy
+     * @return clone - the copy
+     */
+    function deepClone(obj) {
+			let clone = {};
+			for (let key in obj) {
+				if (typeof obj[key] === 'object' && obj[key] !== null) {
+					clone[key] = deepClone(obj[key]);
+				}
+				clone[key] = obj[key];
+			}
+
+			return clone;
+			
+		}
+
+   	/**
+   	 * @param  src - argument to check
+   	 * @param  obj - argument to compare
+   	 * @return {boolean}
+   	 */
+    function deepEqual(src, obj) {
+
+    	if (typeof src === 'function') return src.toString() === obj.toString();
+
+    	if (!isObject(src)) {
+    		return src === obj;
+    	}
+
+    	if (Object.keys(src).length !== Object.keys(obj).length) return false;
+
+    	
+
+			for (let key in src) {
+				if (!obj.hasOwnProperty(key)) return false;
+
+				if (isObject(src[key]) && isObject(obj[key])) {
+					return deepEqual(src[key], obj[key]);
+				} else	if (src[key] !== obj[key]) return false;
+			}
+
+			return true;
+			
+		}
+
+    var obj1 = {
+        isBoss: null,
+        firstName: 'Иван',
+        lastName: 'Петров',
+        cabinetNumber: 123,
+        phoneNumber: 9123,
+        computer: {
+          motherBoard: 'ASUS P5KPL-AM',
+          cpu: 'Intel Core2 Duo',
+          memory: '2 GB, DDR2 1066',
+          hardDisk: 'Seagate Barracuda 1 TB, 7200 rpm'
+        },
+        serviceDates: ["2016-10-03", { date: "2016-10-14", remark: "User needs for punishment" } ,"2016-10-27"]
+      }
+      
+      var obj2 = deepClone(obj1);
+
+    
+
+    
+    console.log(deepEqual(obj1, obj2));
+    console.log(deepEqual([ 2, true, function(a){return a;},"test" ],[ 2, true, function(a){return a;},"test" ] ));
+    
+		
+
+  </script>
+		
+</body>
+
+</html>

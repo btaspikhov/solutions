@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
+  .blue {
+    color: blue;
+  }
+</style>
+</head>
+<body>
+	<div id="clock" class="clock">
+    <span class="hour green">00</span>:<span class="min blue">00</span>:<span class="sec red">00</span>
+  </div>
+
+  <script>
+  	'use strict';
+
+  	class Clock {
+  		constructor(options) {
+  			this._el = options.el;
+  			this._intervalId = null;
+  		}
+
+  		start() {
+  			this._tick();
+  			this._intervalId = setInterval(this._tick.bind(this),1000)
+
+  		}
+
+  		stop() {
+  			clearInterval(this._intervalId);
+  		}
+
+  		_tick() {
+  			let date = new Date();
+  			let hours = this._el.children[0];
+  			let minutes = this._el.children[1];
+  			let seconds = this._el.children[2];
+
+  			hours.innerHTML = date.getHours();
+  			minutes.innerHTML = date.getMinutes();
+  			seconds.innerHTML = date.getSeconds();
+  		}
+  	}
+
+  	let clock = new Clock({el: document.querySelector('.clock')});
+
+  </script>
+
+  <input type="button" onclick="clock.start()" value="Start">
+
+	<input type="button" onclick="clock.stop()" value="Stop">
+
+	<input type="button" onclick="alert('Часы должны останавливаться во время alert,\nи продолжать корректно работать после нажатия на ОК')" value="alert для проверки корректного возобновления">
+
+</body>
+
+</html>

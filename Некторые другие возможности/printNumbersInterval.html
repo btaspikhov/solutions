@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>printNumbersInterval</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function printNumbersInterval() {
+    	let i = 1;
+    	let timerId = setInterval(function() {
+    		console.log(i++);
+    	}, 100);
+
+    	let deleteTimerId = setTimeout(function() {clearInterval(timerId)}, 2000);
+    }
+
+    printNumbersInterval();
+
+
+
+
+  </script>
+	
+</body>
+</html>

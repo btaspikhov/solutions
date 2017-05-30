@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <div id="container">
+  </div>
+  <script>
+    var data = {
+      "Рыбы": {
+        "Форель": {},
+        "Щука": {}
+      },
+
+      "Деревья": {
+        "Хвойные": {
+          "Лиственница": {},
+          "Ель": {}
+        },
+        "Цветковые": {
+          "Берёза": {},
+          "Тополь": {}
+        }
+      }
+    };
+    function isEmpty(object) {
+      for(var key in object) {
+        if(object.hasOwnProperty(key)){
+          return false;
+        }
+      }
+      return true;
+    }
+    function createTree(elem, data) {
+      if (!isEmpty(data)) {
+      var ul = document.createElement("ul");
+      for (var o in data) {
+        var li = document.createElement("li");
+        li.innerHTML = o;
+        createTree(li, data[o]);
+        ul.appendChild(li);
+      }
+      elem.appendChild(ul);
+    }
+    }
+    var container = document.getElementById('container');
+    createTree(container, data); // создаёт
+  </script>
+</body>
+
+</html>

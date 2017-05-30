@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>__proto__</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    let head = {
+		  glasses: 1
+		};
+
+		let table = {
+		  pen: 3
+		};
+
+		let bed = {
+		  sheet: 1,
+		  pillow: 2
+		};
+
+		let pockets = {
+		  money: 2000
+		};
+
+		pockets.__proto__ = bed;
+		bed.__proto__ = table;
+		table.__proto__ = head;
+
+		//console.log(pockets.pen, bed.glasses, table.money);
+
+		function test(obj) {
+			let start = Date.now();
+			for (let i=0; i<10000; i++) {
+				obj.glasses++;
+			}
+			return (Date.now() - start);
+			
+		}
+
+		let time1 = 0, time2 = 0;
+
+		for (let i=0; i<10000; i++) {
+			time1 += test(head);	
+		}
+		
+		for (let i=0; i<10000; i++) {
+			time2 += test(pockets);;	
+		} 
+
+		console.log(time1, time2); 
+		
+		
+
+  </script>
+	
+</body>
+</html>

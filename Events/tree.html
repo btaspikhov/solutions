@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+  .hidden {
+    display: none;
+  }
+  span:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  </style>
+</head>
+
+<body>
+
+  <ul class="tree">
+    <li>Животные
+      <ul>
+        <li>Млекопитающие
+          <ul>
+            <li>Коровы</li>
+            <li>Ослы</li>
+            <li>Собаки</li>
+            <li>Тигры</li>
+          </ul>
+        </li>
+        <li>Другие
+          <ul>
+            <li>Змеи</li>
+            <li>Птицы</li>
+            <li>Ящерицы</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Рыбы
+      <ul>
+        <li>Аквариумные
+          <ul>
+            <li>Гуппи</li>
+            <li>Скалярии</li>
+          </ul>
+
+        </li>
+        <li>Морские
+          <ul>
+            <li>Морская форель</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <script>
+    var ul = document.getElementsByClassName('tree')[0];
+    var lis = document.getElementsByTagName('li');
+    for (var i=0; i<lis.length; i++) {
+      var li = lis[i];
+      var span = document.createElement('span');
+      li.insertAdjacentElement('afterBegin', span);
+      var text = span.nextSibling;
+      span.appendChild(text);
+    }
+    ul.addEventListener('click', function hide(e) {
+      var target = e.target;
+      if (target.tagName == 'SPAN') {
+          target.nextSibling.classList.toggle('hidden');  
+
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

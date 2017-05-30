@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script>
+        if (!window.pageYOffset1) {
+            Object.defineProperty(window, 'pageYOffset1', {
+                get: function() {
+                    return window.pageYOffset1 = document.documentElement.scrollTop ||  document.body.scrollTop;
+                }
+            })
+
+        }
+    </script>
+
+
+</body>
+
+</html>

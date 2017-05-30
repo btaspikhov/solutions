@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hamster</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function Hamster() {
+    	this.food = []; // пустой "живот"
+    }
+
+		Hamster.prototype.found = function(something) {
+		  this.food.push(something);
+		};
+
+		// Создаём двух хомяков и кормим первого
+		var speedy = new Hamster();
+		var lazy = new Hamster();
+
+		speedy.found("яблоко");
+		speedy.found("орех");
+
+		alert( speedy.food.length ); // 2
+		alert( lazy.food.length ); // 2 (!??)
+
+  </script>
+	
+</body>
+</html>

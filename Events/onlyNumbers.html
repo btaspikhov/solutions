@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  Введите ваш возраст:
+  <input type="text">
+
+
+  <script>
+    /*var input = document.querySelector('input');
+    input.onkeypress = function(e) {
+    // спец. сочетание - не обрабатываем
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+    var char = getChar(e);
+
+    if (!char) return; // спец. символ - не обрабатываем
+    if(/\d/.test(char)) this.value += char;
+
+    return false;
+    };*/
+
+    var keyCodes = [];
+    document.onkeydown = function(e) {
+      keyCodes.push(e.keyCode);
+      runOnKeys(
+        function() { alert("Привет!") },
+        "Q".charCodeAt(0),
+        "W".charCodeAt(0)
+      );
+    }
+    document.onkeyup = function(e) {
+      keyCodes=[];
+    }
+
+    function runOnKeys(f) {
+      var n = 0;
+      for (var i = 1; i < arguments.length; i++) {
+        if (keyCodes.includes(arguments[i])) n++;
+      }
+      if (n == arguments.length-1) {
+        f();
+        keyCodes=[];
+      }
+    }
+   
+
+
+    // вспомогательная функция, если понадобится
+
+    function getChar(event) {
+      if (event.which == null) {
+        if (event.keyCode < 32) return null;
+        return String.fromCharCode(event.keyCode) // IE
+      }
+
+      if (event.which != 0 && event.charCode != 0) {
+        if (event.which < 32) return null;
+        return String.fromCharCode(event.which) // остальные
+      }
+
+      return null; // специальная клавиша
+    }
+  </script>
+</body>
+
+</html>

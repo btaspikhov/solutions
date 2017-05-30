@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+</head>
+<body>
+	<script>
+    'use strict';
+		
+
+	class FormatError extends SyntaxError {
+
+		constructor() {
+	    super("ошибка форматирования");
+		  this.name = 'FormatError';
+
+		  if (Error.captureStackTrace) {
+		    Error.captureStackTrace(this, this.constructor);
+		  } else {
+		    this.stack = (new Error()).stack;
+		  }
+	  }
+
+	}
+
+	let err = new FormatError("ошибка форматирования");
+
+  alert( err.message ); // ошибка форматирования
+	alert( err.name ); // FormatError
+	alert( err.stack ); // стек на момент генерации ошибки
+
+	alert( err instanceof SyntaxError ); // true
+
+  </script>
+	
+</body>
+</html>

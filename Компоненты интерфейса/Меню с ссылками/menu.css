@@ -1,0 +1,24 @@
+.menu__list {
+  display: none;
+  margin: 0;
+}
+
+.menu__title {
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu__title:before {
+  content: '▶';
+  padding-right: 6px;
+  color: green;
+}
+
+.menu.open .menu__list {
+  display: block;
+}
+
+.menu.open .menu__title:before {
+  content: '▼';
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<ul id="ul">
+</ul>
+
+<script>
+  var ul = document.querySelector("ul");
+  do {
+    var li = document.createElement("li");
+    li.textContent = prompt("Введите элемент списка");
+    if (li.textContent) {
+      ul.appendChild(li);
+    }
+  } while (li.textContent);
+</script>
+</body>
+
+</html>

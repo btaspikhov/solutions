@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JSON2</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    let leader = {
+		  name: "Василий Иванович"
+		};
+
+		let soldier = {
+		  name: "Петька"
+		};
+
+		// эти объекты ссылаются друг на друга!
+		leader.soldier = soldier;
+		soldier.leader = leader;
+
+		let team = [leader, soldier];
+
+		team.toJSON = function() {
+			let leader = {
+			  name: "Василий Иванович"
+			};
+
+			let soldier = {
+			  name: "Петька"
+			}; 
+			
+			leader.soldier = soldier;
+
+			soldier.leader = 'leader'; 
+
+			return [leader, soldier]; 	
+		}
+
+
+		let str = JSON.stringify(team, '', 2);
+
+		console.log(str);
+		     
+    
+
+    
+
+
+  </script>
+	
+</body>
+</html>

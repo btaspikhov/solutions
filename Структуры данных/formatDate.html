@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    /*Если со времени date прошло менее секунды, то возвращает "только что".
+			Иначе если со времени date прошло менее минуты, то "n сек. назад".
+			Иначе если прошло меньше часа, то "m мин. назад".
+			Иначе полная дата в формате "дд.мм.гг чч:мм".*/
+    function formatDate(date) { 
+    	let diff = Date.now() - date; 
+    	if (diff < 1000) return "только что";
+    	if (diff < 1000*60) return Math.round(diff/1000) +" сек. назад";
+    	if (diff < 1000*60*60) return Math.round(diff/(1000*60)) +" мин. назад";
+    	
+    	let min = date.getMinutes();
+    	if (min < 10) min = '0'+min;
+    	
+    	let hh = date.getHours();
+    	if (hh < 10) hh = '0'+hh;
+    	
+    	let dd = date.getDate();
+    	if (dd < 10) dd = '0'+dd;
+    	
+    	let mm = date.getMonth()+1;
+    	if (mm < 10) mm = '0'+mm;
+    	
+    	let yy = date.getFullYear()%100;
+    	if (yy < 10) yy = '0'+yy; 
+    	return dd + '.' + mm + '.' + yy + ' ' + hh + ':' + min; 
+    }		
+	</script>
+		
+</body>
+
+</html>

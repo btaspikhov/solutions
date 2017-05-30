@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    let arr = [];
+    let i = 2;
+    while (i <= 100) {
+    	arr.push(i);
+    	i++;
+    }
+
+    let p = arr[0];
+    let indexes = [];
+    let start = 1;
+
+
+    while (Math.pow(p, 2) < 100) {
+    	
+    	for (let i=start; i<arr.length; i++) {
+	    	let j = 2;
+	    	while (p*j <= arr[i]) {
+	    		if (p*j === arr[i] && indexes.indexOf(i) === -1) indexes.push(i);
+	    		j++;
+	    	} 	
+	    }
+
+	    for (let i=start; i<arr.length; i++) {
+	    	if (indexes.indexOf(i) === -1) {
+	    		p = arr[i];
+	    		start = i+1;
+	    		break;	
+	    	}
+	    }
+
+    }
+
+    let newArr = [];
+    let sum = 0;
+    for (let i=0; i<arr.length; i++) {
+    	if (indexes.indexOf(i) === -1) {
+    		newArr.push(arr[i]);
+    		sum += arr[i];
+    	}
+    }
+	    
+
+    console.log(newArr);
+    console.log(sum);
+
+  </script>
+</body>
+
+</html>

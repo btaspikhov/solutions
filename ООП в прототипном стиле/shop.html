@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cart1</title>
+</head>
+<body>
+	<script>
+    'use strict';
+		/*Описание
+		В магазине покупатель выбрал 4 товара со следующими ценами.
+		В результате сформировалась корзина,
+		const selectedCart = [
+		   { price: 20 },
+		   { price: 45 },
+		   { price: 67 },
+		   { price: 1305 }
+		];
+		Магазин в котором совершается покупка интернациональный и каждый клиент может выбрать любую валюту,
+		с помощью которой будет осуществлять оплату.
+		Список доступных валют:
+		    rubles, euros, dollard, pounds, yens (базовой валютой является dollar)
+		    
+		    
+		Цель
+		рассчитать общую цену для каждого типа валюты, получив объект вида:
+		const totalCartPrice = { 
+		   rubles: number,
+		   euros: number,
+		   dollars: number,
+		   pounds: number,
+		   yens: number
+		};*/
+
+	class Cart {
+
+		constructor() {
+	    this._items = [];
+	  }
+
+	  _getSum() {
+				return this._items.reduce(function(prev, cur) {
+					return prev + cur.price;
+				}, 0);
+		};
+
+		addItem(item) {
+				this._items.push(item);
+		};
+
+		addRate(currName, {rate, precision}) {
+				Cart._rates[currName] = {rate, precision};
+		};
+
+		getTotalPrice() {
+				let totalPrice = {};
+				for (let curr in Cart._rates) {
+					totalPrice[curr] = (this._getSum()*Cart._rates[curr]['rate']).toFixed(Cart._rates[curr]['precision']);
+				}
+				return totalPrice;
+		};
+
+		static get _rates () {
+        return {
+					dollar: {
+					  rate: 1,
+					  precision: 2
+					},
+					rubles: {
+					  rate: 67.0001,
+					  precision: 2
+					}, 
+					euros: {
+					  rate: 0.9123123,
+					  precision: 2
+					}, 
+					pounds: {
+					  rate: 0.72323,
+					  precision: 2
+					}, 
+					yens: {
+					  rate: 10,
+					  precision: 1
+					}
+			  };
+   }
+}
+
+	let selectedCart = new Cart();
+	selectedCart.addRate('tenge', {rate: 340.2345234, precision: 2});
+	selectedCart.addItem({ price: 20 });
+	selectedCart.addItem({ price: 45 });
+	selectedCart.addItem({ price: 67 });
+	selectedCart.addItem({ price: 1305 });
+
+	let totalCartPrice = selectedCart.getTotalPrice();
+	console.log(totalCartPrice);
+
+  </script>
+	
+</body>
+</html>

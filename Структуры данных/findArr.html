@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    let arr = ["test", 2, 1.5, false];
+
+    console.log(find(arr, "test")); // 0
+    console.log(find(arr, 2)); // 1
+    console.log(find(arr, 1.5)); // 2
+
+    console.log(find(arr, 0)); // -1
+
+    function find(arr, value) {
+        for (let i=0; i<arr.length; i++) {
+            if (arr[i] === value) return i;
+        }
+        return -1;
+    }
+    
+
+  </script>
+</body>
+
+</html>

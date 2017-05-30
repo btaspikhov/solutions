@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    /**
+     * @author Berik Taspikhov
+     * Вычисляет сумму и произведение введенной пары значений
+    */
+    function sum(a) {
+
+      let curSum = a;
+
+      function f(b) {
+        curSum += b;
+        let c = f;
+        return c;
+      }
+
+      f.valueOf = function() {
+                  return curSum;
+                }  
+      return f;
+
+      
+    }
+
+    console.log( +sum(1) );
+    console.log( +sum(1)(2) );
+	
+
+  
+
+  </script>
+	
+</body>
+</html>

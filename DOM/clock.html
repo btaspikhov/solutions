@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+<style>
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
+  .blue {
+    color: blue;
+  }
+</style>
+  <script>
+    var div= document.createElement("div");
+    var h= document.createElement("span");
+    h.className = "red";
+    div.appendChild(h);
+    var m= document.createElement("span");
+    m.className = "green";
+    div.appendChild(m);
+    var s= document.createElement("span");
+    s.className = "blue";
+    div.appendChild(s);
+    document.body.appendChild(div);
+    function getTime() {
+      var d = new Date();
+      var h, m, s;
+      if (d.getHours()<10) { h = "0"+d.getHours()} else {h = d.getHours()};
+      if (d.getMinutes()<10) { m = "0"+d.getMinutes()} else {m = d.getMinutes()};
+      if (d.getSeconds()<10) { s = "0"+d.getSeconds()} else {s = d.getSeconds()};
+
+      div.children[0].innerHTML = h+":";
+      div.children[1].innerHTML = m+":";
+      div.children[2].innerHTML = s;
+
+    }
+    setInterval(getTime, 1000);
+    getTime();
+  </script>
+
+</body>
+
+</html>

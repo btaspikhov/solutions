@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <script>
+	do {
+		var isMoreThan100 = prompt('Enter number, greater than 100', '');
+	}  while (isMoreThan100 <= 100 && isMoreThan100 !== null);
+	function printPrimalNumbers(a,b) {
+		loop: for (var i=a; i<=b; i++) {
+				for (var j=2; j<i; j++) {
+					if (i%j == 0) {
+						continue loop;
+					}
+
+				}
+				console.log(i);
+			}
+	}
+	printPrimalNumbers(2,10);
+
+	var a = +prompt('a?', '');
+
+		switch (a) {
+			case 0: 
+				alert(0);
+				break;
+
+			case 1:
+				alert(1);
+				break;
+
+			case 2:
+			case 3:
+				alert('2,3');
+				break;
+		}
+		if (a == 0) {
+		  alert( 0 );
+		}
+		if (a == 1) {
+		  alert( 1 );
+		}
+
+		if (a == 2 || a == 3) {
+		  alert( '2,3' );
+		}
+  </script>
+</body>
+
+</html>

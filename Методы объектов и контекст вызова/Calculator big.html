@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    /** 
+     * Вычисляет результат бинарной операции
+     * Добавляет новые операции
+     * @constructor Accumulator
+     * @author Berik Taspikhov
+     */
+    function Calculator() {
+
+      let operations = {};
+      operations['+'] = function(a, b) {
+        return a + b;
+      }
+
+      operations['-'] = function(a, b) {
+        return a - b;
+      }  
+
+      this.calculate = function(str) {
+        let arr = str.split(' '),
+            a = +arr[0],
+            op = arr[1],
+            b = +arr[2];
+        
+        if (arr.length !== 3) return 'Неправильное выражение';
+        if (!operations[op] || isNaN(a) || isNaN(b)) return NaN;
+
+        return operations[op](a, b); 
+
+       
+      }
+
+      this.addMethod = function(operation, f) {
+        operations[operation] = f;
+      }
+    }
+
+
+    var calc = new Calculator;
+
+    console.log( calc.calculate("3 + 7") ); // 10
+    console.log( calc.calculate("3 - 7") ); // 10
+
+    var powerCalc = new Calculator;
+    powerCalc.addMethod("*", function(a, b) {
+      return a * b;
+    });
+    powerCalc.addMethod("/", function(a, b) {
+      return a / b;
+    });
+    powerCalc.addMethod("**", function(a, b) {
+      return Math.pow(a, b);
+    });
+
+    var result = powerCalc.calculate("2 ** 3");
+    console.log( result ); // 8
+
+
+  </script>
+	
+</body>
+</html>

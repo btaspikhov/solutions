@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>a=b a<b</title>
+</head>
+<body>
+	<script>
+    'use strict';
+      
+      /**
+       * Создает объект, значение которого растет
+       * @author Berik Taspikhov
+      */
+      function StrangeVal() {
+        let u = 0;
+        this.valueOf = function() {
+          return u++;
+        }
+      }
+  
+      let a = new StrangeVal();
+      
+  
+      console.log(a == a);
+      console.log(a < a);
+
+
+  </script>
+	
+</body>
+</html>

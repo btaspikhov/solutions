@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+</head>
+<body>
+	<script>
+    'use strict';
+		
+
+	class Calculator {
+
+		constructor() {
+	    this._items = [];
+	  }
+
+	  push(val) {
+	  	this._items.push(val);
+	  }
+
+	  do(op) {
+	  	let result;
+	  	switch (op) {
+	  		case '+':
+	  			result = this._items[0] + this._items[1];
+	  			break;
+	  		case '**':
+	  			result = Math.pow(this._items[0], this._items[1]);
+	  			break;
+	  	}
+	  	this._items = [];
+	  	console.log(result);
+	  }
+
+  }
+
+  let calculator = new Calculator();
+
+	calculator.push(2);
+	calculator.push(3);
+	calculator.do('+'); // 5
+
+
+	calculator.push(6);
+	calculator.push(3);
+	calculator.do('**'); // 216
+
+  </script>
+	
+</body>
+</html>

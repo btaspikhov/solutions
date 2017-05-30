@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <div>Это</div>
+  <div>Все</div>
+  <div>Элементы DOM</div>
+
+  <script>
+    if (!Element.prototype.remove) {
+      Element.prototype.remove = function () {
+        return this.parentNode.removeChild(this);
+      }
+    }
+
+    var elem = document.body.children[2];
+
+    elem.remove(); // <-- вызов должен удалить элемент
+  </script>
+</body>
+
+</html>

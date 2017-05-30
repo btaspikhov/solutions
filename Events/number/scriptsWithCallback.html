@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <script>
+    function addScripts(scripts, callback) {
+      var counter = 0;
+      var loaded = {};
+      
+      function call(i) {
+        counter++;
+        if (loaded[i]) return;
+        if (counter == scripts.length) {
+           loaded[i] = true;
+           callback();
+        }
+      }
+      for (var i = 0; i<scripts.length; i++) (function(i) {
+        var script = document.createElement('script');
+        script.src = scripts[i];
+        document.body.appendChild(script);
+        script.onload = function() {
+          call(i);
+        }
+        script.onreadystatechange = function() { // IE8-
+          if (this.readyState == 'loaded' || this.readyState == 'complete') {
+            setTimeout(function() {
+              call(i)
+            }, 0);
+          }
+        };
+      }(i))
+      
+    }
+
+    addScripts(["a.js", "b.js", "c.js"], function() {
+      a()
+    });
+  </script>
+
+</body>
+
+</html>

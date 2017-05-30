@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+    'use strict';	
+
+
+		let arr =[];
+		for (let i=0; i<4; i++) {
+		  i++;
+      arr.push(function() {console.log(i);})
+			
+		}
+		
+		for (let i=0; i<arr.length; i++) {
+			arr[i]();
+		}
+	
+
+  </script>
+	
+</body>
+</html>

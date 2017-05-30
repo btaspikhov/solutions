@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    .hours {
+      color: red;
+    }
+
+    .minutes {
+      color: green;
+    }
+
+    .seconds {
+      color: blue;
+    }
+
+    .clock {
+      border: 1px dashed black;
+      padding: 5px;
+      display: inline-block;
+      background: yellow;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+    }
+
+    .tooltip {
+      position: absolute;
+      background: #eee;
+      border: 1px brown solid;
+      padding: 3px;
+      left: 10px;
+      top: 100px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="elem" class="clock">
+    <span class="hours">12</span> :
+    <span class="minutes">30</span> :
+    <span class="seconds">00</span>
+  </div>
+
+
+  <script>
+      var tooltip = document.createElement('div');
+      tooltip.className = "tooltip";
+      tooltip.innerHTML = "Подсказка";
+      var leave;
+      new HoverIntent({
+        elem: elem,
+        over: function(e) {
+              leave = false;
+              var that = this;
+              setTimeout(function() {
+                if (leave == false) {
+                  tooltip.style.left = that.getBoundingClientRect().left + 'px';
+                  tooltip.style.top = that.getBoundingClientRect().bottom + 5 + 'px';
+                  document.body.appendChild(tooltip);
+                }
+              }, 500);
+              
+               
+        },
+        out: function() {
+          leave = true;
+          if (document.body.lastChild == tooltip) {
+            document.body.removeChild(tooltip);
+          }
+        }
+      });
+
+    function HoverIntent(options) {
+      var elem = options.elem;
+      elem.addEventListener('mouseenter', options.over);
+      elem.addEventListener('mouseleave', options.out);
+    }
+  </script>
+
+</body>
+</html>

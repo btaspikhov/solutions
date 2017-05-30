@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    let arr = [];
+    let sum = null;
+    while (1) {
+    	let value = prompt("Введите число", '');
+    	if (!isNumber(value)) break;
+    	arr.push(+value);
+    }
+
+    for (let i=0; i<arr.length; i++) {
+    	sum += arr[i]; 
+    }
+
+    console.log(sum);
+    
+    console.log(isNumber('5/6'));
+    console.log(isNumber(NaN));
+    console.log(isNumber(null));
+    console.log(isNumber('Infinity'));
+    console.log(isNumber('true'));
+    console.log(isNumber(true));
+    console.log(isNumber(''));
+    console.log(isNumber(5));
+    console.log(isNumber('5'));
+
+    function isNumber(n) {
+    	return !isNaN(n) && !isNaN(parseFloat(n));
+    }
+
+    
+
+  </script>
+</body>
+
+</html>

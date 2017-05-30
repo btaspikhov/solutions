@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+	.slider {
+	  border-radius: 5px;
+	  background: #E0E0E0;
+	  background: -moz-linear-gradient(left top, #E0E0E0, #EEEEEE) repeat scroll 0 0 transparent;
+	  background: -webkit-gradient(linear, left top, right bottom, from(#E0E0E0), to(#EEEEEE));
+	  background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+	  width: 310px;
+	  height: 15px;
+	  margin: 5px;
+	  /*border: 1px solid red;*/
+	}
+
+	.thumb {
+	  width: 10px;
+	  height: 25px;
+	  border-radius: 3px;
+	  position: relative;
+	  left: 10px;
+	  top: -5px;
+	  background: blue;
+	  cursor: pointer;
+	}
+  </style>  
+</head>
+
+<body>
+
+  <div id="slider" class="slider">
+    <div class="thumb"></div>
+  </div>
+
+  <script>
+	var thumb = document.querySelector('.thumb');
+	var slider = document.querySelector('.slider');
+	slider.style.position = 'relative';
+
+	var sliderCoords = getCoords(slider);
+
+	thumb.onmousedown = function(e) {
+
+		var coords = getCoords(thumb);
+		var shiftX = e.pageX - coords.left;
+
+		thumb.style.position = 'absolute';
+		console.log(e.clientX, thumb.style.left, sliderCoords.left);
+
+		thumb.style.zIndex = 1000; // над другими элементами
+
+		function moveAt(e) {
+		    if (e.pageX - shiftX <= sliderCoords.left) {
+		    	thumb.style.left = 0;
+		    	console.log(getCoords(thumb).left, getCoords(slider).left);
+		    	return;
+		    }
+		    if (e.pageX - shiftX + thumb.offsetWidth >= sliderCoords.right) {
+		    	thumb.style.left = slider.offsetWidth - thumb.offsetWidth + 'px' ;
+		    	console.log(getCoords(thumb).right, getCoords(slider).right);
+		    	return;
+		    }
+		    thumb.style.left = e.pageX - sliderCoords.left - shiftX + 'px'; 
+		}
+
+		document.onmousemove = function(e) {
+		    moveAt(e);
+		};
+
+		document.onmouseup = function() {
+		    document.onmousemove = null;
+		    thumb.onmouseup = null;
+		};
+
+	}
+
+	thumb.ondragstart = function() {
+	  return false;
+	};
+
+	function getCoords(elem) { 
+  var box = elem.getBoundingClientRect();
+
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset,
+    right: box.right + pageXOffset
+  };
+
+}
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    /** 
+     * Хранит накопленную сумму
+     * @constructor Accumulator
+     * @author Berik Taspikhov
+     */
+    function Accumulator(startValue) {
+      
+      this.value = startValue;
+
+      this.read = function() {
+        let num = +prompt('Введите число', '0');
+        this.value += num;
+      }
+
+    } 
+     
+    
+
+    
+
+
+  </script>
+	
+</body>
+</html>

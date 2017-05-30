@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>makeCaching</title>
+</head>
+<body>
+	<script>
+    "use strict";
+
+    function f(x) {
+		  return Math.random() * x; // random для удобства тестирования
+		}
+
+		function makeCaching(f) {
+				let cash = {}; 
+				return function(n) {
+					if (n in cash) return cash[n];
+
+					cash[n] = f.apply(this, arguments);
+					return cash[n];
+
+				}
+
+		}
+
+		f = makeCaching(f);
+
+		var a, b;
+
+		a = f(1);
+		b = f(1);
+		alert( a == b ); // true (значение закешировано)
+
+		b = f(2);
+		alert( a == b ); // false, другой аргумент => другое значение
+  </script>
+	
+</body>
+</html>

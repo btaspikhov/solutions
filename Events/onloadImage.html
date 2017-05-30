@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .img-replace {
+      float: left;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Google -->
+
+  <div style="width:114px;height:40px;font-size:32px;letter-spacing:3px" class="img-replace" data-src="https://js.cx/search/google.png">
+    <span style="color:#1A53F7">G</span><span style="color:#E42131">o</span><span style="color:#FEB819">o</span><span style="color:#164AF2">g</span><span style="color:#00a315">l</span><span style="color:#E42131">e</span>
+  </div>
+
+  <!-- Яндекс -->
+  <div style="width:101px;height:40px;font-size:32px" class="img-replace" data-src="https://js.cx/search/yandex.png">
+    <span style="color:#F00">Я</span>ндекс
+  </div>
+
+  <!-- Bing -->
+  <div style="width:100;height:40px;font-size:32px;color:#006dd4;font-weight:bold;letter-spacing: 3px; font-family:Arial" data-src="https://js.cx/search/bing.png">bing</div>
+
+  <hr>
+  <!-- картинки (для bing картинки специально нет, чтобы протестировать случай "загрузка не удалась") -->
+
+  <script>
+    var divs = document.querySelectorAll('div.img-replace');
+    for (var i=0; i<divs.length; i++) (function(i){
+        var img = document.createElement('img');
+        img.src = divs[i].dataset.src;
+        img.classList.add('img-replace');
+
+        img.onload = function() {
+          divs[i].parentNode.replaceChild(img, divs[i]);
+        } 
+    }(i));
+    /*bingText = divs[2].innerHTML;
+    var yandexImg = document.createElement('img');
+    yandexImg.onload = replaceImage(divs[1], yandexImg);
+    //yandexImg.onerror = function() { alert("Ошибка "+this.src };
+    yandexImg.src = 'https://js.cx/search/yandex.png';
+
+    var googleImg = document.createElement('img');
+    googleImg.onload = replaceImage(divs[0], googleImg);
+    //yandexImg.onerror = function() { alert("Ошибка "+this.src };
+    googleImg.src = 'https://js.cx/search/google.png';
+
+    var bingImg = document.createElement('img');
+    bingImg.onload = replaceImage(divs[2], bingImg);
+    bingImg.onerror = function() { divs[2].innerHTML = bingText; };
+    bingImg.src = 'https://js.cx/search/bing.png';
+    //var imgs = document.querySelectorAll('img');
+    
+    /*for (var i = 0; i<imgs.length; i++) {
+      imgs[i].onload = function() {
+        switch (i) {
+          case 0:
+            replaceImage(divs[1], imgs[i]);
+            break;
+          case 1:
+            replaceImage(divs[0], imgs[i]);
+            break;
+          case 2:
+            replaceImage(divs[2], imgs[i]);
+        }
+      }
+      imgs[i].onerror = function() {
+        imgs[i].hidden = true;
+      }
+    }*/
+    function replaceImage(div, img) {
+      div.innerHTML = '';
+      div.appendChild(img);
+    }
+  </script>
+
+  <!--<img src="https://js.cx/search/yandex.png" width="114" height="40" alt="Яндекс"> 
+  <img src="https://js.cx/search/google.png" width="101" height="40" alt="Google">
+  <img src="https://js.cx/search/bing.png" width="101" height="40" alt="Файла нет (bing)"> -->
+
+  
+
+</body>
+
+</html>

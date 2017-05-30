@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    let  arr = [1, -2, 3, 4, -9, 6];
+
+    
+    function getMaxSubSum(arr) {
+      let sum = [];
+      let max = 0;
+      for (let num=1; num <= arr.length; num++) {
+	      sum = sum.concat(sumOfRange(arr, num));
+    	}	
+
+    	for (let i=0; i<sum.length; i++) {
+    		if (sum[i] > max) max = sum[i];		
+    	}
+
+      return max;
+    }
+
+    function sumOfRange(arr, num) {
+      let sum = [];
+
+      for (let i=0; i<=arr.length-num; i++) {
+        sum[i] = 0;
+      }
+
+      for (let i=0; i<=arr.length-num; i++) {
+        for (let j=i; j<i+num; j++) {
+          sum[i] += arr[j]; 
+        }
+      }
+
+      return sum;
+    }
+    
+    console.log(getMaxSubSum(arr));
+    console.log(getMaxSubSum([-1, 2, 3, -9])) //= 5 (сумма выделенных)
+		console.log(getMaxSubSum([2, -1, 2, 3, -9])) //= 6
+		console.log(getMaxSubSum([-1, 2, 3, -9, 11])) //= 11
+		console.log(getMaxSubSum([-2, -1, 1, 2])) //= 3
+		console.log(getMaxSubSum([100, -9, 2, -3, 5])) //= 100
+		console.log(getMaxSubSum([1, 2, 3])) //= 6 (неотрицательные - берем всех)
+
+  </script>
+</body>
+
+</html>

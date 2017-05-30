@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+<table>
+  <tr><th>Имя</th><th>Фамилия</th><th>Отчество</th><th>Возраст</th></tr>
+  <tr><td>Имя1</td><td>Фамилия1</td><td id = "td1">Отчество1</td><td>3</td></tr>
+  <tr><td>Имя2</td><td>Фамилия2</td><td>Отчество2</td><td>2</td></tr>
+  <tr><td>Имя3</td><td>Фамилия3</td><td>Отчество3</td><td>4</td></tr>
+</table>
+
+  <script>
+    var table = document.body.firstElementChild;
+    var arr = [];
+    for (var i=1; i<table.rows.length; i++) {
+      var o = {};
+      o.name=table.rows[i].cells[0].innerHTML;
+      o.surname=table.rows[i].cells[1].innerHTML;
+      o.fathername=table.rows[i].cells[2].innerHTML;
+      o.age=table.rows[i].cells[3].innerHTML;
+      arr.push(o);
+    }
+    arr.sort(function(a,b){return a.age-b.age});
+    for (var i=0; i<arr.length; i++) {
+      table.rows[i+1].cells[0].innerHTML = arr[i].name;
+      table.rows[i+1].cells[1].innerHTML = arr[i].surname;
+      table.rows[i+1].cells[2].innerHTML = arr[i].fathername;
+      table.rows[i+1].cells[3].innerHTML = arr[i].age;
+    }
+
+    var td = document.querySelector('#td1');
+    td.innerHTML = 1;
+
+
+
+  </script>
+
+</body>
+
+</html>

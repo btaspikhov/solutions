@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>throttle</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function throttle(f, ms) {
+
+        let state = null, timerId, t = 0;
+
+        return function() {
+
+            
+
+            let args = arguments;
+            let that = this;
+            if (state) {
+                if (timerId) clearTimeout(timerId);
+                timerId = setTimeout(function() {
+                    f.apply(that, args);
+                    t = Date.now() - t;
+                    state = 1;
+                    setTimeout(function() {
+                        state = null;
+                       }, ms);
+                }, ms - Date.now() + t);
+                
+                return;
+            }
+            
+            f.apply(that, arguments);
+            t = Date.now() - t;
+            state = 1;
+            setTimeout(function() {
+                        state = null;
+                       }, ms);
+        }
+
+    }
+
+  
+
+
+
+
+  </script>
+	
+</body>
+</html>

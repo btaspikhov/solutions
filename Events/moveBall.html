@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px groove black;
+      background-color: #00FF00;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #ball {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -20px;
+      margin-top: -20px;
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Кликните на любое место поля, чтобы мяч перелетел туда.
+  <br> Мяч никогда не вылетит за границы поля.
+
+
+  <div id="field">
+    <img src="https://js.cx/clipart/ball.svg" style = "height: 40px; width: 40px" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+<script>
+  var field = document.getElementById('field');
+  var ball = document.getElementById('ball');
+  var coords = field.getBoundingClientRect();
+  var ballWidth = getComputedStyle(ball).width;
+  var ballHeight = getComputedStyle(ball).height;
+  field.addEventListener('click', function(e) {
+    ball.style.left = Math.min(Math.max(e.clientX - coords.left - field.clientLeft - parseInt(ballWidth,10)/2+20, 20), field.clientWidth-20)+'px';
+    ball.style.top = Math.min(Math.max(e.clientY-coords.top-field.clientTop- parseInt(ballHeight)/2+20, 20), field.clientHeight-20)+'px';
+    console.log(coords.left+field.clientLeft+field.clientWidth-20, field.clientWidth);
+  });
+</script>
+
+</body>
+
+</html>

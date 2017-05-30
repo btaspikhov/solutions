@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CoffeeMachine</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    function User() {
+  		let firstName, surname;
+
+  		this.getFirstName = function() {
+  			return firstName;
+  		}
+
+  		this.setFirstName = function(val) {
+  			firstName = val;
+  		}
+
+  		this.getSurname = function() {
+  			return surname;
+  		}
+
+  		this.setSurname = function(val) {
+  			surname = val;
+  		}
+
+  		this.getFullName = function() {
+  				return firstName + ' ' + surname;
+  		}
+		}
+
+		var user = new User();
+		user.setFirstName("Петя");
+		user.setSurname("Иванов");
+
+		alert( user.getFullName() ); // Петя Иванов
+		  
+
+
+
+
+  </script>
+	
+</body>
+</html>

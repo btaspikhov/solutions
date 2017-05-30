@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    /**
+     * @author Berik Taspikhov
+     * Вычисляет сумму и произведение введенной пары значений
+    */
+    function Calculator() {
+      this.read = function() {
+        this.arg1 = +prompt('First arg', '0');
+        this.arg2 = +prompt('Second arg', '0');
+      },
+      
+      this.sum = function() {
+        return this.arg1 + this.arg2;
+      },
+      
+      this.mul = function() {
+        return this.arg1*this.arg2;
+      }
+
+    } 
+     
+    
+
+    var calculator = new Calculator();
+    calculator.read();
+
+    alert( "Сумма=" + calculator.sum() );
+    alert( "Произведение=" + calculator.mul() );
+
+
+  </script>
+	
+</body>
+</html>

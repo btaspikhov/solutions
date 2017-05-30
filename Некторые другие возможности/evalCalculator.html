@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>eval</title>
+</head>
+<body>
+	<script>
+    'use strict';
+
+    let res;
+    while (true) {
+        let exp = prompt('Enter expression: ', '');
+
+        if (exp === null) break;
+
+        try {
+                res = eval(exp);
+                if ( isNaN(res) ) throw new Error("Результат неопределен");
+
+                break;
+
+        } catch (e) {
+            alert(e.message + ' Введите заново');
+        }
+
+    }
+
+    alert(res);
+   
+
+    
+    
+
+  
+
+
+
+
+  </script>
+	
+</body>
+</html>

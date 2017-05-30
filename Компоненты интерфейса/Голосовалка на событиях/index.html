@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="voter.js"></script>
+    <script src="stepVoter.js"></script>
+  </head>
+
+  <body>
+    <div class="voter">
+    <span class="voter__down">—</span>
+    <span class="voter__vote">0</span>
+    <span class="voter__up">+</span>
+
+
+
+    <script>
+      let voter2 = new StepVoter({
+      elem: document.querySelector('.voter'),
+      step: 2 // увеличивать/уменьшать сразу на 2 пункта
+      });
+
+      document.querySelector('.voter').addEventListener('change', function(e) {
+        alert( e.detail ); // новое значение голоса
+      });
+    </script>
+
+
+  </div>
+  </body>
+
+</html>

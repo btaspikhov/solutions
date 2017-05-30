@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      /* подсказка должна работать независимо от прокрутки */
+    }
+    .tooltip {
+      display: none;
+      position: absolute;
+
+    }
+    .tooltip.on {
+      display: block;
+      border: 2px solid green;
+      margin: 10px;
+      background-color: white;
+      transition: display 1s;
+    }
+    /* ваши стили */
+  </style>
+</head>
+
+<body>
+
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+  <button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
+  <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
+  <p>Прокрутите страницу, чтобы ссылки были вверху и проверьте, правильно ли показываются подсказки.</p>
+
+
+  <script>
+    function getCoords(elem) { // получить координаты относительно страницы
+      var box = elem.getBoundingClientRect();
+
+      return {
+        top: box.top + pageYOffset,
+        left: box.left + pageXOffset,
+        bottom: box.bottom + pageYOffset
+      };
+    }
+    var div = document.createElement('div');
+    div.style.position = 'absolute';
+    div.classList.add('tooltip');
+    document.body.appendChild(div);
+    document.addEventListener('mouseover', function(e) {
+      var target = e.target;
+      if (target.tagName == 'BUTTON') {
+        div.innerHTML = target.getAttribute('data-tooltip');
+        div.classList.add('on');
+        var coords = getCoords(target);
+        var screenCoords = target.getBoundingClientRect();
+        var height = div.offsetHeight;
+        var style = getComputedStyle(div);
+        if (screenCoords.top > height) {
+          div.style.top = coords.top-height-parseInt(style.margin, 10)+'px';
+          div.style.left = coords.left-parseInt(style.margin, 10)+'px';
+        } else {
+          div.style.top = coords.bottom-parseInt(style.margin, 10)+'px';
+          div.style.left = coords.left-parseInt(style.margin, 10)+'px';
+        }
+      }
+    });
+    document.addEventListener('mouseout', function(e) {
+      var target = e.target;
+      div.classList.remove('on');
+    });
+  </script>
+
+</body>
+
+</html>

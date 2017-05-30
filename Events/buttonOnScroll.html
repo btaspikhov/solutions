@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #matrix {
+      width: 400px;
+      margin: auto;
+      overflow: auto;
+      text-align: justify;
+    }
+    .arrow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+  </style>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <div class = "arrow" hidden>
+    ▲ ▼
+  </div>
+
+  <div id="matrix">
+    <script>
+      for (var i = 0; i < 2000; i++) document.writeln(i)
+    </script>
+  </div>
+
+  <script>
+    var arrow = document.querySelector('.arrow');
+    var scrollPosition;
+
+    document.addEventListener('scroll', function(e) {
+      
+      if (pageYOffset > document.documentElement.clientHeight) {
+        arrow.hidden = false;
+        arrow.innerHTML = '▲';
+        scrollPosition = null;
+      } 
+    })
+
+    arrow.addEventListener('click', function(e) {
+      if (scrollPosition) {
+        window.scrollTo(0,scrollPosition);
+        arrow.innerHTML = '▲';
+        return;
+      }
+      scrollPosition = pageYOffset;
+      window.scrollTo(0,0);
+      arrow.innerHTML = '▼';
+    })
+  </script>
+</body>
+
+</html>
